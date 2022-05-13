@@ -1,0 +1,29 @@
+﻿  ANDROID_HOME=C:\\Microsoft\AndroidSDK\25
+  ANT_HOME=C:\Program Files\Microsoft Visual Studio\2022\Community\Apps\apache-ant-1.9.3
+  JAVA_HOME=C:\Program Files\Android\jdk\jdk-8.0.302.8-hotspot\jdk8u302-b08
+  NDK_ROOT=C:\archive\android-ndk-r23b
+  gzread.c
+  infback.c
+  gzclose.c
+  gzwrite.c
+  adler32.c
+  gzlib.c
+  deflate.c
+  crc32.c
+  In file included from deflate.c:52:
+./deflate.h(16,10): fatal error : 'zutil.h' file not found
+  #include "zutil.h"
+           ^~~~~~~~~
+adler32.c(8,10): fatal error : 'zutil.h' file not found
+  #include "zutil.h"
+           ^~~~~~~~~
+  1 error generated.
+  1 error generated.
+crc32.c(31,10): fatal error : 'zutil.h' file not found
+  #include "zutil.h"      /* for STDC and FAR definitions */
+infback.c(13,10): fatal error : 'zutil.h' file not found
+           ^~~~~~~~~
+  #include "zutil.h"
+           ^~~~~~~~~
+  1 error generated.
+  1 error generated.
