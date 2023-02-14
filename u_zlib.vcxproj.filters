@@ -18,7 +18,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="axiszlib.def">
+    <None Include="zlib.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
