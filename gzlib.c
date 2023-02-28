@@ -1,4 +1,4 @@
-/* gzlib.c -- zlib functions common to reading and writing gzip files
+﻿/* gzlib.c -- zlib functions common to reading and writing gzip files
  * Copyright (C) 2004-2017 Mark Adler
  * For conditions of distribution and use, see copyright notice in zlib.h
  */
@@ -242,7 +242,7 @@ local gzFile gz_open(path, fd, mode)
 #ifdef WIDECHAR
         fd == -2 ? _wopen(path, oflag, 0666) :
 #endif
-        open((const char *)path, oflag, 0666));
+        _open((const char *)path, oflag, 0666));
     if (state->fd == -1) {
         free(state->path);
         free(state);
