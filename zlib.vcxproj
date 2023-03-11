@@ -37,7 +37,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>third</RootNamespace>
+    <RootNamespace>zlib</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>zlib</ProjectName>
   </PropertyGroup>
