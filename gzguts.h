@@ -39,11 +39,11 @@
 #  include <io.h>
 #endif
 
-#if defined(_WIN32)
+#if defined(WIN32)
 #  define WIDECHAR
 #endif
 
-#ifdef WINAPI_FAMILY
+#ifdef WIN32
 #  define open _open
 #  define read _read
 #  define write _write
