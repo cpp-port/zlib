@@ -22,5 +22,10 @@
 /minigzipsh
 /zlib.pc
 /configure.log
+_packages.txt
+deployment.rc
+application_build_helper_input.txt
+application_build_helper_output.txt
+matter_output.txt
 
 .DS_Store
