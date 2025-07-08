@@ -1,7 +1,7 @@
-cmake_minimum_required(VERSION 2.4.4)
+cmake_minimum_required(VERSION 3.16)
+project(zlib C)
 set(CMAKE_ALLOW_LOOSE_LOOP_CONSTRUCTS ON)
 
-project(zlib C)
 
 set(VERSION "1.2.13")
 
@@ -89,7 +89,7 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_SOURCE_DIR})
 
 set(ZLIB_PUBLIC_HDRS
     ${CMAKE_CURRENT_BINARY_DIR}/zconf.h
-    zlib.h
+    include/zlib.h
 )
 set(ZLIB_PRIVATE_HDRS
     crc32.h
@@ -100,7 +100,7 @@ set(ZLIB_PRIVATE_HDRS
     inflate.h
     inftrees.h
     trees.h
-    zutil.h
+    include/zutil.h
 )
 set(ZLIB_SRCS
     adler32.c
@@ -127,7 +127,7 @@ if(NOT MINGW)
 endif()
 
 # parse the full version number from zlib.h and include in ZLIB_FULL_VERSION
-file(READ ${CMAKE_CURRENT_SOURCE_DIR}/zlib.h _zlib_h_contents)
+file(READ ${CMAKE_CURRENT_SOURCE_DIR}/include/zlib.h _zlib_h_contents)
 string(REGEX REPLACE ".*#define[ \t]+ZLIB_VERSION[ \t]+\"([-0-9A-Za-z.]+)\".*"
     "\\1" ZLIB_FULL_VERSION ${_zlib_h_contents})
 
