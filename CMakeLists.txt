@@ -57,7 +57,7 @@ endif()
 check_include_file(unistd.h Z_HAVE_UNISTD_H)
 
 if(MSVC)
-    set(CMAKE_DEBUG_POSTFIX "d")
+    #set(CMAKE_DEBUG_POSTFIX "d")
     add_definitions(-D_CRT_SECURE_NO_DEPRECATE)
     add_definitions(-D_CRT_NONSTDC_NO_DEPRECATE)
     include_directories(${CMAKE_CURRENT_SOURCE_DIR})
@@ -88,7 +88,7 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_SOURCE_DIR})
 #============================================================================
 
 set(ZLIB_PUBLIC_HDRS
-    ${CMAKE_CURRENT_BINARY_DIR}/zconf.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/operating_system-${OPERATING_SYSTEM_LOWERED_NAME}/configuration/${PROJECT_NAME}/zconf.h
     include/zlib.h
 )
 set(ZLIB_PRIVATE_HDRS
@@ -149,6 +149,15 @@ endif(MINGW)
 
 add_library(zlib SHARED ${ZLIB_SRCS} ${ZLIB_DLL_SRCS} ${ZLIB_PUBLIC_HDRS} ${ZLIB_PRIVATE_HDRS})
 add_library(zlibstatic STATIC ${ZLIB_SRCS} ${ZLIB_PUBLIC_HDRS} ${ZLIB_PRIVATE_HDRS})
+
+message(STATUS "\${OPERATING_SYSTEM_LOWERED_NAME} is ${OPERATING_SYSTEM_LOWERED_NAME}")
+target_include_directories(zlib PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/operating_system-${OPERATING_SYSTEM_LOWERED_NAME}/configuration)
+target_include_directories(zlib PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/operating_system-${OPERATING_SYSTEM_LOWERED_NAME}/configuration/${PROJECT_NAME})
+target_include_directories(zlibstatic PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/operating_system-${OPERATING_SYSTEM_LOWERED_NAME}/configuration)
+target_include_directories(zlibstatic PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/operating_system-${OPERATING_SYSTEM_LOWERED_NAME}/configuration/${PROJECT_NAME})
+
+
+
 set_target_properties(zlib PROPERTIES DEFINE_SYMBOL ZLIB_DLL)
 set_target_properties(zlib PROPERTIES SOVERSION 1)
 
@@ -194,26 +203,22 @@ endif()
 # Example binaries
 #============================================================================
 
-add_executable(example test/example.c)
-target_link_libraries(example zlib)
-add_test(example example)
+#add_executable(example test/example.c)
+#target_link_libraries(example zlib)
+#add_test(example example)
 
-add_executable(minigzip test/minigzip.c)
-target_link_libraries(minigzip zlib)
+#add_executable(minigzip test/minigzip.c)
+#target_link_libraries(minigzip zlib)
 
-if(HAVE_OFF64_T)
-    add_executable(example64 test/example.c)
-    target_link_libraries(example64 zlib)
-    set_target_properties(example64 PROPERTIES COMPILE_FLAGS "-D_FILE_OFFSET_BITS=64")
-    add_test(example64 example64)
-
-    add_executable(minigzip64 test/minigzip.c)
-    target_link_libraries(minigzip64 zlib)
-    set_target_properties(minigzip64 PROPERTIES COMPILE_FLAGS "-D_FILE_OFFSET_BITS=64")
-endif()
-
-message(STATUS "\${OPERATING_SYSTEM_LOWERED_NAME} is ${OPERATING_SYSTEM_LOWERED_NAME}")
-target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/operating_system-${OPERATING_SYSTEM_LOWERED_NAME}/configuration)
-target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/operating_system-${OPERATING_SYSTEM_LOWERED_NAME}/configuration/${PROJECT_NAME})
-
-
+#if(HAVE_OFF64_T)
+#    add_executable(example64 test/example.c)
+#    target_link_libraries(example64 zlib)
+#    set_target_properties(example64 PROPERTIES COMPILE_FLAGS "-D_FILE_OFFSET_BITS=64")
+#    add_test(example64 example64)
+#
+#    add_executable(minigzip64 test/minigzip.c)
+#    target_link_libraries(minigzip64 zlib)
+#    set_target_properties(minigzip64 PROPERTIES COMPILE_FLAGS "-D_FILE_OFFSET_BITS=64")
+#endif()
+#
+#
