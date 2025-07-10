@@ -42,7 +42,7 @@ if(HAVE_OFF64_T)
    add_definitions(-D_LARGEFILE64_SOURCE=1)
 endif()
 set(CMAKE_REQUIRED_DEFINITIONS) # clear variable
-
+add_compile_definitions(ZLIB_DEBUG)
 #
 # Check for fseeko
 #
