@@ -164,7 +164,7 @@ endif()
 
 if(UNIX)
     # On unix-like platforms the library is almost always called libz
-   set_target_properties(${PROJECT_NAME} static_${PROJECT_NAME} PROPERTIES OUTPUT_NAME z)
+   #set_target_properties(${PROJECT_NAME} static_${PROJECT_NAME} PROPERTIES OUTPUT_NAME z)
    if(NOT APPLE)
      set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "-Wl,--version-script,\"${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.map\"")
    endif()
