@@ -43,7 +43,8 @@ if(HAVE_OFF64_T)
 endif()
 set(CMAKE_REQUIRED_DEFINITIONS) # clear variable
 add_compile_definitions(ZLIB_DEBUG)
-add_compile_options(-Wno-deprecated-non-prototype)
+
+add_compile_options($<$<CXX_COMPILER_ID:GNU>:-Wno-deprecated-non-prototype>)
 #
 # Check for fseeko
 #
