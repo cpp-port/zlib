@@ -1,5 +1,23 @@
 cmake_minimum_required(VERSION 3.16)
 project(zlib C)
+
+if(__REACTOS__)
+    set(PORT_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
+    configure_file("${CMAKE_CURRENT_SOURCE_DIR}/zconf.h.cmakein" "${CMAKE_CURRENT_BINARY_DIR}/zconf.h")
+    file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/zlib")
+    file(GENERATE OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/zlib/config.h" CONTENT "#pragma once\n#undef Z_HAVE_UNISTD_H\n#undef _LARGEFILE64_SOURCE\n")
+    set(zlib_sources adler32.c compress.c crc32.c deflate.c gzclose.c gzlib.c
+        gzread.c gzwrite.c infback.c inffast.c inflate.c inftrees.c trees.c uncompr.c zutil.c)
+    list(TRANSFORM zlib_sources PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/")
+    add_library(zlib SHARED ${zlib_sources})
+    set_target_properties(zlib PROPERTIES PREFIX "")
+    target_compile_definitions(zlib PRIVATE ZLIB_DLL __REACTOS__ _WIN32_WINNT=0x0501 WINVER=0x0501)
+    target_include_directories(zlib BEFORE PRIVATE "${CMAKE_CURRENT_BINARY_DIR}" "${CMAKE_CURRENT_SOURCE_DIR}/include" "${CMAKE_CURRENT_SOURCE_DIR}")
+    install(TARGETS zlib RUNTIME DESTINATION binary ARCHIVE DESTINATION library)
+    install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/include/zlib.h" "${CMAKE_CURRENT_BINARY_DIR}/zconf.h" DESTINATION include)
+
+    return()
+endif()
 set(CMAKE_ALLOW_LOOSE_LOOP_CONSTRUCTS ON)
 
 
